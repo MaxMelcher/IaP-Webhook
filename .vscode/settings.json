@@ -1,0 +1,5 @@
+{
+    "appService.preDeployTask": "publish-release",
+    "appService.deploySubpath": "bin\\Release\\netcoreapp3.1\\publish",
+    "appService.defaultWebAppToDeploy": "/subscriptions/7dd29626-c426-4fc4-abcd-406ce8cd34c8/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/iaptest"
+}
