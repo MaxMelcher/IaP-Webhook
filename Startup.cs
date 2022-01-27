@@ -25,6 +25,14 @@ namespace Apple_IaP_WebApi2
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add Cors
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
             services.AddControllers();
             services.AddSwaggerGen();
         }
@@ -37,7 +45,11 @@ namespace Apple_IaP_WebApi2
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
+            app.UseCors("MyPolicy");
+            app.UseSwagger(options =>
+            {
+                options.SerializeAsV2 = true;
+            });
             app.UseSwaggerUI();
 
             app.UseHttpsRedirection();
@@ -45,6 +57,7 @@ namespace Apple_IaP_WebApi2
             app.UseRouting();
 
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
